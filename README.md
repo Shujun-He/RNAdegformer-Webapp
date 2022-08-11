@@ -18,9 +18,8 @@ https://www.kaggle.com/shujun717/nucleic-transformer-rna-degradation-inference <
 
 ### RNA degradation prediction
 In this page you can predict RNA degradation at each nucleotide and visualize the attention weights of the Nucleic Transformer
-[![RNA degradation](https://github.com/Shujun-He/Nucleic-Transformer-WebApp/blob/main/files/rna_page.png)](https://github.com/Shujun-He/RNAdegformer-Webapp/blob/main/files/rnapage.png)
 
-
+![RNA degradation](https://github.com/Shujun-He/RNAdegformer-Webapp/blob/main/files/rnapage.png)
 
 
 

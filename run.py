@@ -195,7 +195,7 @@ async def predict_rna_tab(q):
     ui_list_custom = [
         ui.text_m(f'In this section, you can directly type a sequence and get predictions for the following targets: {target_columns}.'),
         ui.text_m(f'Additional features will be generated automatically and we will visulize the RNA folding and \
-        attention weights of the Nucleic Transformer for you as well'),
+        attention weights of the RNAdegformer for you as well'),
         ui.textbox(name='rna_sequence_textbox', label='Sequence', value=q.args.rna_sequence_textbox or "GGAAAAGCUCUAAUAACAGGAGACUAGGACUACGUAUUUCUAGGUAACUGGAAUAACCCAUACCAGCAGUUAGAGUUCGCUCUAACAAAAGAAACAACAACAACAAC"),
         ui.button(name='predict_rna', label='Predict', primary=True),
         ui.text_s(f'You can enter in following formats: '),
@@ -340,7 +340,9 @@ async def display_data_parameters_page(q,random_sample_disabled=True):
     elif q.client.activetab == "rnaprediction":
             await delete_pages(q,keep_nav=True)
             await predict_rna_tab(q)
-
+    # elif q.client.activetab is None:
+    #         await delete_pages(q,keep_nav=True)
+    #         await home(q)
 
 
 
@@ -367,15 +369,17 @@ async def main(q: Q):
         q.app.home_image_4_url, = await q.site.upload([image_4_path])
 
 
-    q.client.activetab = 'home'
+    if q.client.activetab is None:
+        q.client.activetab='home'
     await display_data_parameters_page(q)
     await display_nav(q)
 
 
     if q.args.predict_rna:
         #q.client.virus_topk = q.args.virus_topk
+        q.client.activetab = "rnaprediction"
         await rna_model_predict(q)
-        print('line 815')
+        #print('line 815')
         await predict_rna_tab(q)
 
 
